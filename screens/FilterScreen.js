@@ -1,5 +1,5 @@
-import react from 'react';
-import {} from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 
 const FiltersScreen = (props) => {
   return (
