@@ -1,17 +1,22 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 
 import { CATEGORIES } from '../data/dummy-data';
 
-const renderGridItem = (itemData) => {
-  return (
-    <View style={styles.gridItem}>
-      <Text>{itemData.item.title}</Text>
-    </View>
-  )
-}
-
 const CategoriesScreen = (props) => {
+  const renderGridItem = (itemData) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          props.navigation.navigate({routeName: 'CategoryMeals'})
+        }}
+      >
+        <View style={styles.gridItem}>
+          <Text>{itemData.item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
 
   return (
     <FlatList
@@ -22,6 +27,10 @@ const CategoriesScreen = (props) => {
     />
   );
 };
+
+
+
+
 
 const styles = StyleSheet.create({
   screen: {
