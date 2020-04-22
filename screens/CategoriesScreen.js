@@ -1,7 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 
 import { CATEGORIES } from '../data/dummy-data';
+import Colors from '../constants/Colors';
 
 const CategoriesScreen = (props) => {
   const renderGridItem = (itemData) => {
@@ -16,8 +23,8 @@ const CategoriesScreen = (props) => {
           <Text>{itemData.item.title}</Text>
         </View>
       </TouchableOpacity>
-    )
-  }
+    );
+  };
 
   return (
     <FlatList
@@ -29,9 +36,14 @@ const CategoriesScreen = (props) => {
   );
 };
 
-
-
-
+  // defined property respected by react navigation (see official docs on website)
+  CategoriesScreen.navigationOptions = {
+    headerTitle: 'Meal Categories',
+    headerStyle: {
+      backgroundColor: PlatColors.primaryColor,
+    },
+    headerTintColor: 'white',
+  };
 
 const styles = StyleSheet.create({
   screen: {
