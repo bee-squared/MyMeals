@@ -10,15 +10,12 @@ import Colors from '../constants/Colors';
 const MealsNavigator = createStackNavigator({
   Categories: {
     screen: CategoriesScreen,
-    navigationOptions: {
-      headerTitle: 'Meal Categories',
-    }
   },
   CategoryMeals: {
     screen: CategoryMealScreen,
   },
   MealDetail: MealDetailScreen,
-}, {
+}, { // defaults get overriden if the component navigation options are defined for a component
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: Platform === 'android' ? Colors.primaryColor : '',
