@@ -11,7 +11,7 @@ const CategoryGridTile = (props) => {
 
   return (
     <View style={styles.gridItem}>
-      <TouchableCmp style={{flex: 1}} onPress={props.onSelect}>
+      <TouchableCmp style={styles.touchable} onPress={props.onSelect}>
         <View style={{...styles.container, ...{backgroundColor: props.color}}}>
           <Text style={styles.title} numberOfLines={2}>{props.title}</Text>
         </View>
@@ -25,6 +25,8 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 15,
     height: 150,
+    borderRadius: 10,
+    overflow: 'hidden', // to ensure ripple effect doesn't go outside of gridItem
   },
   container: {
     flex: 1,
@@ -42,6 +44,9 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans-bold',
     fontSize: 22,
     textAlign: 'right',
+  },
+  touchable: {
+    flex: 1,
   }
 });
 
