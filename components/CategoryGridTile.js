@@ -5,19 +5,21 @@ const CategoryGridTile = (props) => {
   return (
     <TouchableOpacity
     style={styles.gridItem}
-    onPress={() => {
-      props.navigation.navigate({ routeName: 'CategoryMeals', params: {
-        categoryId: itemData.item.id,
-      }})
-    }}
+    onPress={props.onSelect}
   >
     <View>
-      <Text>{itemData.item.title}</Text>
+      <Text>{props.title}</Text>
     </View>
   </TouchableOpacity>
   )
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  gridItem: {
+    flex: 1,
+    margin: 15,
+    height: 150,
+  },
+});
 
 export default CategoryGridTile;

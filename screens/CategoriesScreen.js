@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet,
+import {
+  StyleSheet,
   View,
   Text,
   FlatList,
@@ -7,13 +8,24 @@ import { StyleSheet,
 } from 'react-native';
 
 import { CATEGORIES } from '../data/dummy-data';
+import CategoryGridTile from '../components/CategoryGridTile';
 
 const CategoriesScreen = (props) => {
   const renderGridItem = (itemData) => {
     return (
-
+      <CategoryGridTile
+        title={itemData.item.title}
+        onSelect={() => {
+          props.navigation.navigate({
+            routeName: 'CategoryMeals',
+            params: {
+              categoryId: itemData.item.id,
+            },
+          })
+        }}
+      />
     );
-  };
+  }
 
   return (
     <FlatList
@@ -25,10 +37,10 @@ const CategoriesScreen = (props) => {
   );
 };
 
-  // defined property respected by react navigation (see official docs on website)
-  CategoriesScreen.navigationOptions = {
-    headerTitle: 'Meal Categories',
-  };
+// defined property respected by react navigation (see official docs on website)
+CategoriesScreen.navigationOptions = {
+  headerTitle: 'Meal Categories',
+};
 
 const styles = StyleSheet.create({
   screen: {
@@ -36,11 +48,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  gridItem: {
-    flex: 1,
-    margin: 15,
-    height: 150,
-  }
 });
 
 export default CategoriesScreen;
