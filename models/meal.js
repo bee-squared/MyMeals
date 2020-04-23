@@ -5,7 +5,7 @@ class Meal {
     this.title = title;
     this.affordability = affordability;
     this.complexity = complexity;
-    this.imageUrl = url;
+    this.imageUrl = imageUrl;
     this.duration = duration;
     this.ingredients = ingredients;
     this.steps = steps;
