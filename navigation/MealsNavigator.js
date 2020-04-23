@@ -17,6 +17,7 @@ const MealsNavigator = createStackNavigator({
   MealDetail: MealDetailScreen,
 }, { // defaults get overriden if the component navigation options are defined for a component
   // mode: 'modal' // option to have a different animation when screen opens
+  // initialRouteName: 'MealDetail', // example to have a different initial load screen instead of the top stacked screen
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: Platform === 'android' ? Colors.primaryColor : '',
