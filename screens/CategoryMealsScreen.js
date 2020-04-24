@@ -8,7 +8,12 @@ const CategoryMealScreen = (props) => {
 
   const renderMealItem = (itemData) => {
     return (
-      <MealItem title={itemData.item.title} onSelectMeal={() => {}}/>
+      <MealItem
+        title={itemData.item.title}
+        duration={itemData.item.duration}
+        complexity={itemData.item.complexity}
+        affordability={itemData.item.affordability}
+        onSelectMeal={() => {}}/>
     )
   }
 
@@ -24,6 +29,7 @@ const CategoryMealScreen = (props) => {
         data={displayedMeals}
         keyExtractor={(item, index) => item.id}
         renderItem={renderMealItem}
+        style={{width: '100%'}}
       />
     </View>
   )
