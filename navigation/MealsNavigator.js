@@ -20,9 +20,9 @@ const MealsNavigator = createStackNavigator({
   // initialRouteName: 'MealDetail', // example to have a different initial load screen instead of the top stacked screen
   defaultNavigationOptions: {
     headerStyle: {
-      backgroundColor: Platform === 'android' ? Colors.primaryColor : '',
+      backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
     },
-    headerTintColor: Platform === 'android' ? 'white' : Colors.primaryColor,
+    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
   }
 }
 )
