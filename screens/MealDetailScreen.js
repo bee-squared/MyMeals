@@ -22,7 +22,7 @@ MealDetailScreen.navigationOptions = (naviationData) => {
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
   return {
     headerTitle: selectedMeal.title,
-    headerRight: <Text>FAVS!</Text>
+    headerRight: () => <Text>FAVS!</Text>,
   };
 }
 
