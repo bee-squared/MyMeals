@@ -5,9 +5,7 @@ import { MEALS } from '../data/dummy-data';
 
 const MealDetailScreen = (props) => {
   const mealId = props.navigation.getParam('mealId');
-
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
-
   return (
     <View style={styles.screen}>
       <Text>{selectedMeal.title}</Text>
@@ -19,7 +17,7 @@ const MealDetailScreen = (props) => {
 };
 
 // add name to header
-MealDetailScreen.naviationOptions = (naviationData) => {
+MealDetailScreen.navigationOptions = (naviationData) => {
   const mealId = naviationData.navigation.getParam('mealId');
   const selectedMeal = MEALS.find(meal => meal.id === mealId);
   return {
