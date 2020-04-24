@@ -17,7 +17,7 @@ const MealItem = (props) => {
               source={{ uri: props.image }}
               style={styles.bgImage}
             >
-              <Text>{props.title}</Text>
+              <Text style={styles.title} numberOfLines={1}>{props.title}</Text>
             </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
@@ -40,6 +40,16 @@ const styles = StyleSheet.create({
   bgImage: {
     width: '100%',
     height: '100%',
+    justifyContent: 'flex-end',
+  },
+  title: {
+    fontFamily: 'open-sans-bold',
+    fontSize: 22,
+    color: 'white',
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+    textAlign: 'center',
   },
   mealRow: {
     flexDirection: 'row',
