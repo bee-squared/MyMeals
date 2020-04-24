@@ -6,18 +6,14 @@ import { CATEGORIES, MEALS } from '../data/dummy-data';
 const CategoryMealScreen = (props) => {
 
   const renderMealItem = (itemData) => {
-    // console.log(itemData.item.title)
     return (
       <View>
         <Text>{itemData.item.title}</Text>
       </View>
-
     )
   }
 
   const catId = props.navigation.getParam('categoryId');
-
-  const selectedCategory = CATEGORIES.find((cat) => {cat.id === catId});
 
   const displayedMeals = MEALS.filter((meal) => {
     return meal.categoryIds.indexOf(catId) >= 0
