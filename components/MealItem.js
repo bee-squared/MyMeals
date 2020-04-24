@@ -1,15 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 
-const MealItem = props => {
+const MealItem = (props) => {
   return (
     <View style={styles.mealItem}>
       <TouchableOpacity onPress={props.onSelectMeal}>
         <View>
-          <View style={{...styles.mealRow, ...styles.mealHeader}}>
+          <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
+            <ImageBackground source={{uri: props.image}} style={styles.bgImage}/>
             <Text>{props.title}</Text>
           </View>
-          <View style={{...styles.mealRow, ...styles.mealDetail}}>
+          <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
             <Text>{props.duration}m</Text>
             <Text>{props.complexity}</Text>
             <Text>{props.affordability}</Text>
@@ -17,14 +24,18 @@ const MealItem = props => {
         </View>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   mealItem: {
     height: 200,
     width: '100%',
     backgroundColor: '#ccc',
+  },
+  bgImage: {
+    width: '100%',
+    height: '100%',
   },
   mealRow: {
     flexDirection: 'row',
@@ -35,7 +46,7 @@ const styles = StyleSheet.create({
   mealDetail: {
     paddingHorizontal: 10,
     justifyContent: 'space-between',
-  }
-})
+  },
+});
 
 export default MealItem;

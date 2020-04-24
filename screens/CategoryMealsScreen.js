@@ -4,7 +4,6 @@ import {
   StyleSheet,
   View,
   Text,
-  ImageBackgroundComponent,
 } from 'react-native';
 
 import { CATEGORIES, MEALS } from '../data/dummy-data';
@@ -15,6 +14,7 @@ const CategoryMealScreen = (props) => {
     return (
       <MealItem
         title={itemData.item.title}
+        image={itemData.item.imageUrl}
         duration={itemData.item.duration}
         complexity={itemData.item.complexity.toUpperCase()}
         affordability={itemData.item.affordability.toUpperCase()}
