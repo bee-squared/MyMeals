@@ -1,22 +1,16 @@
 import React from 'react';
-import { FlatList, StyleSheet, View, Text } from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  Text,
+} from 'react-native';
 
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 import MealItem from '../components/MealItem';
 
 const CategoryMealScreen = (props) => {
-
   const renderMealItem = (itemData) => {
-
-    const onSelectMeal = () => {
-      props.navigation.navigate({
-        routeName: 'MealDetail',
-        params: {
-          categoryId: itemData.item.id,
-        },
-      });
-    };
-
     return (
       <MealItem
         title={itemData.item.title}
@@ -24,14 +18,7 @@ const CategoryMealScreen = (props) => {
         duration={itemData.item.duration}
         complexity={itemData.item.complexity.toUpperCase()}
         affordability={itemData.item.affordability.toUpperCase()}
-        onSelectMeal={() => {
-          return props.navigation.navigate({
-            routeName: 'MealDetail',
-            params: {
-              mealId: itemData.item.id,
-            },
-          });
-        }}
+        onSelectMeal={() => {}}
       />
     );
   };
