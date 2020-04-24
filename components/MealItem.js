@@ -13,8 +13,12 @@ const MealItem = (props) => {
       <TouchableOpacity onPress={props.onSelectMeal}>
         <View>
           <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
-            <ImageBackground source={{uri: props.image}} style={styles.bgImage}/>
-            <Text>{props.title}</Text>
+            <ImageBackground
+              source={{ uri: props.image }}
+              style={styles.bgImage}
+            >
+              <Text>{props.title}</Text>
+            </ImageBackground>
           </View>
           <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
             <Text>{props.duration}m</Text>
