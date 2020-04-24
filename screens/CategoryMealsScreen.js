@@ -4,28 +4,30 @@ import { FlatList, StyleSheet, View, Text } from 'react-native';
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 
 const CategoryMealScreen = (props) => {
+
   const renderMealItem = (itemData) => {
+    // console.log(itemData.item.title)
     return (
       <View>
         <Text>{itemData.item.title}</Text>
       </View>
+
     )
   }
 
   const catId = props.navigation.getParam('categoryId');
-  const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
 
-  displayedMeals = MEALS.filter((meal) => {
-    meal.categoryIds.indexOf(catId) >= 0
-  }
-  );
+  const selectedCategory = CATEGORIES.find((cat) => {cat.id === catId});
 
+  const displayedMeals = MEALS.filter((meal) => {
+    return meal.categoryIds.indexOf(catId) >= 0
+  });
 
   return (
     <View style={styles.screen}>
       <FlatList
         data={displayedMeals}
-        keyExtractor={(item, index) => {item.id}}
+        keyExtractor={(item, index) => item.id}
         renderItem={renderMealItem}
       />
     </View>
