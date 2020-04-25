@@ -52,6 +52,7 @@ const tabScreenConfig = {
           />
         );
       },
+      tabBarColor: Colors.primaryColor,
     },
   },
   Favorites: {
@@ -67,6 +68,7 @@ const tabScreenConfig = {
           />
         );
       },
+      tabBarColor: Colors.primaryColor,
     },
   },
 }
