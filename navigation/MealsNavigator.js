@@ -1,3 +1,4 @@
+import React from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
@@ -38,14 +39,14 @@ const MealsFavTabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarIcon: (tabInfo) => {
         return <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor} />
-      }
+      },
     },
-  }
-  Favorites: FavoritesScreen,
+  },
+  Favorites: FavoritesScreen
 }, {
   tabBarOptions: {
     activeTintColor: Colors.primaryColor,
-  }
+  },
 });
 
 export default createAppContainer(MealsFavTabNavigator);
