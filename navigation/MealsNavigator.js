@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealScreen from '../screens/CategoryMealsScreen';
@@ -12,48 +13,75 @@ import Favorites from '../screens/FavoritesScreen';
 import Colors from '../constants/Colors';
 import FavoritesScreen from '../screens/FavoritesScreen';
 
-
-const MealsNavigator = createStackNavigator({
-  Categories: {
-    screen: CategoriesScreen,
-  },
-  CategoryMeals: {
-    screen: CategoryMealScreen,
-  },
-  MealDetail: MealDetailScreen,
-}, { // defaults get overriden if the component navigation options are defined for a component
-  // mode: 'modal' // option to have a different animation when screen opens
-  // initialRouteName: 'MealDetail', // example to have a different initial load screen instead of the top stacked screen
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
+const MealsNavigator = createStackNavigator(
+  {
+    Categories: {
+      screen: CategoriesScreen,
     },
-    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+    CategoryMeals: {
+      screen: CategoryMealScreen,
+    },
+    MealDetail: MealDetailScreen,
+  },
+  {
+    // defaults get overriden if the component navigation options are defined for a component
+    // mode: 'modal' // option to have a different animation when screen opens
+    // initialRouteName: 'MealDetail', // example to have a different initial load screen instead of the top stacked screen
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
+      },
+      headerTintColor:
+        Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+    },
   }
-});
+);
 
-const MealsFavTabNavigator = createBottomTabNavigator({
+const tabScreenConfig = {
   Meals: {
     screen: MealsNavigator,
     // options only matters when you use a navigator (like this stack navigator) in of another navigator
     navigationOptions: {
+      tabBarLabel: 'Meals',
       tabBarIcon: (tabInfo) => {
-        return <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor} />
+        return (
+          <Ionicons
+            name='ios-restaurant'
+            size={25}
+            color={tabInfo.tintColor}
+          />
+        );
       },
     },
   },
   Favorites: {
     screen: FavoritesScreen,
     navigationOptions: {
+      tabBarLabel: 'Favorites',
       tabBarIcon: (tabInfo) => {
-        return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor} />
+        return (
+          <Ionicons
+            name='ios-star'
+            size={25}
+            color={tabInfo.tintColor}
+          />
+        );
       },
     },
   },
-}, {
-  tabBarOptions: {
-    activeTintColor: Colors.primaryColor,
-  },
-});
+}
+
+const MealsFavTabNavigator =
+  Platform.OS === 'android'
+    ? createMaterialBottomTabNavigator(tabScreenConfig, {
+      // for materialBottomTabNavigator, it uses activeColor, not activeTintColor
+      activeColor: 'white',
+      shifting: true,
+    })
+    : createBottomTabNavigator(tabScreenConfig, {
+        tabBarOptions: {
+          activeTintColor: Colors.primaryColor,
+        },
+      })
 
 export default createAppContainer(MealsFavTabNavigator);
