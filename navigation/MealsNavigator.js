@@ -28,12 +28,15 @@ const MealsNavigator = createStackNavigator({
     },
     headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
   }
-}
-)
+});
 
 const MealsFavTabNavigator = createBottomTabNavigator({
   Meals: MealsNavigator,
   Favorites: FavoritesScreen,
+}, {
+  tabBarOptions: {
+    activeTintColor: Colors.primaryColor,
+  }
 });
 
 export default createAppContainer(MealsFavTabNavigator);
