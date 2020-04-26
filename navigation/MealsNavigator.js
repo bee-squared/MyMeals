@@ -69,7 +69,7 @@ const tabScreenConfig = {
     },
   },
   Favorites: {
-    screen: FavoritesScreen,
+    screen: FavNavigator,
     navigationOptions: {
       tabBarLabel: 'Favorites',
       tabBarIcon: (tabInfo) => {
