@@ -19,6 +19,7 @@ const defaultStackNavOptions = {
   },
   headerTintColor:
     Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+  headerTitle: 'A screen' // useful to see to confirm navigator is working properly
 }
 
 const MealsNavigator = createStackNavigator(
