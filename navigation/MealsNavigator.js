@@ -13,6 +13,14 @@ import Favorites from '../screens/FavoritesScreen';
 import Colors from '../constants/Colors';
 import FavoritesScreen from '../screens/FavoritesScreen';
 
+const defaultStackNavOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : '',
+  },
+  headerTintColor:
+    Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+}
+
 const MealsNavigator = createStackNavigator(
   {
     Categories: {
@@ -36,6 +44,17 @@ const MealsNavigator = createStackNavigator(
     },
   }
 );
+
+createStackNavigator({
+  Favorites: FavoritesScreen,
+  MealDetail: MealDetailScreen,
+},
+{
+  // defaults get overriden if the component navigation options are defined for a component
+  // mode: 'modal' // option to have a different animation when screen opens
+  // initialRouteName: 'MealDetail', // example to have a different initial load screen instead of the top stacked screen
+  defaultNavigationOptions: defaultStackNavOptions,
+})
 
 const tabScreenConfig = {
   Meals: {
