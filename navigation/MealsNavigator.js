@@ -113,6 +113,13 @@ const MainNavigator = createDrawerNavigator({
     },
   },
   Filters: FiltersNavigator,
+}, {
+  contentOptions: {
+    activeTintColor: Colors.primaryColor,
+    labelStyle: {
+      fontFamily: 'open-sans-bold',
+    }
+  }
 });
 
 export default createAppContainer(MainNavigator);
