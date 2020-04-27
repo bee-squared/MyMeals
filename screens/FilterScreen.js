@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, View, Text, Switch, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -11,8 +11,8 @@ const FilterSwitch = (props) => {
     <View style={styles.filterContainer}>
       <Text>{props.label}</Text>
       <Switch
-        trackColor={{ true: Colors.primaryColor }}
-        thumbColor={Platform.OS === 'android' ? Colors.primaryColor : ''}
+        trackColor={{true: Platform.OS === 'android' ? Colors.primaryColor : 'lightgrey'}}
+        thumbColor={Platform.OS === 'android' ? 'white' : Colors.primaryColor}
         value={props.state}
         onValueChange={props.onChange}
       />
@@ -21,10 +21,29 @@ const FilterSwitch = (props) => {
 };
 
 const FiltersScreen = (props) => {
+
+  const { navigation } = props;
+
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
+
+  const saveFilters = useCallback(() => {
+    const appliedFilters = {
+      glutenFree: isGlutenFree,
+      lactoseFree: isLactoseFree,
+      vegan: isVegan,
+      vegetarian: isVegetarian,
+    };
+
+    console.log(appliedFilters);
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]); // dependencies to rerender
+
+    useEffect(() => {
+      // new params get merged or overwritten with existing
+      props.navigation.setParams({save: saveFilters });
+    }, [saveFilters]) // useEffect is only used to rerender when the function defined as a parameter is called
 
   return (
     <View style={styles.screen}>
@@ -67,25 +86,12 @@ FiltersScreen.navigationOptions = (navData) => {
         />
       </HeaderButtons>
     ),
-    headerLeft: (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          title='Menu'
-          iconName='ios-menu'
-          onPress={() => {
-            navData.navigation.toggleDrawer();
-          }}
-        />
-      </HeaderButtons>
-    ),
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title='Save'
           iconName='ios-save'
-          onPress={() => {
-            console.log('Saving Filters!')
-          }}
+          onPress={navData.navigation.getParam('save')}
         />
       </HeaderButtons>
     ),
