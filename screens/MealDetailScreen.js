@@ -30,7 +30,9 @@ const MealDetailScreen = (props) => {
         <Text key={ingredient}>{ingredient}</Text>
       ))}
       <Text style={styles.title}>Steps</Text>
-      <Text>List of Steps</Text>
+      {selectedMeal.ingredients.map((steps) => (
+        <Text key={steps}>{steps}</Text>
+      ))}
     </ScrollView>
   );
 };
