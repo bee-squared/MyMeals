@@ -16,16 +16,18 @@ import DefaultText from '../components/DefaultText';
 const MealDetailScreen = (props) => {
   const mealId = props.navigation.getParam('mealId');
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  console.log(props)
   return (
     <ScrollView>
-      <Image />
-      <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-        <DefaultText>{props.duration}m</DefaultText>
-        <DefaultText>{props.complexity}</DefaultText>
-        <DefaultText>{props.affordability}</DefaultText>
+      <Image source={{uri: selectedMeal.imageUrl}} style={styles.image}/>
+      <View style={styles.details}>
+        <DefaultText>{selectedMeal.duration}m</DefaultText>
+        <DefaultText>{selectedMeal.complexity.toUpperCase()}</DefaultText>
+        <DefaultText>{selectedMeal.affordability.toUpperCase()}</DefaultText>
       </View>
       <Text style={styles.title}>Ingredients</Text>
       <Text>List of ingredients...</Text>
+      <Text style={styles.title}>Steps</Text>
       <Text>List of Steps</Text>
     </ScrollView>
   );
@@ -50,11 +52,15 @@ MealDetailScreen.navigationOptions = (naviationData) => {
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  image: {
+    width: '100%',
+    height: 200,
   },
+  details: {
+    flexDirection: 'row',
+    padding: 15,
+    justifyContent: 'space-around',
+  }
 });
 
 export default MealDetailScreen;
