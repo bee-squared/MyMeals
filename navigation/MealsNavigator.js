@@ -11,8 +11,9 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import CategoryMealScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import Favorites from '../screens/FavoritesScreen';
-import Colors from '../constants/Colors';
 import FavoritesScreen from '../screens/FavoritesScreen';
+import FilterScreen from '../screens/FilterScreen';
+import Colors from '../constants/Colors';
 
 const defaultStackNavOptions = {
   headerStyle: {
@@ -101,4 +102,13 @@ const MealsFavTabNavigator =
         },
       })
 
-export default createAppContainer(MealsFavTabNavigator);
+      const FiltersNavigator = createStackNavigator({
+        Filters: FilterScreen
+      });
+
+const MainNavigator = createDrawerNavigator({
+  MealsFavs: MealsFavTabNavigator,
+  Filters: FiltersNavigator
+});
+
+export default createAppContainer(MainNavigator)
