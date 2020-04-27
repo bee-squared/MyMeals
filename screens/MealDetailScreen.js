@@ -16,17 +16,19 @@ import DefaultText from '../components/DefaultText';
 const MealDetailScreen = (props) => {
   const mealId = props.navigation.getParam('mealId');
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
-  console.log(props)
+  console.log(props);
   return (
     <ScrollView>
-      <Image source={{uri: selectedMeal.imageUrl}} style={styles.image}/>
+      <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
       <View style={styles.details}>
         <DefaultText>{selectedMeal.duration}m</DefaultText>
         <DefaultText>{selectedMeal.complexity.toUpperCase()}</DefaultText>
         <DefaultText>{selectedMeal.affordability.toUpperCase()}</DefaultText>
       </View>
       <Text style={styles.title}>Ingredients</Text>
-      <Text>List of ingredients...</Text>
+      {selectedMeal.ingredients.map((ingredient) => (
+        <Text key={ingredient}>{ingredient}</Text>
+      ))}
       <Text style={styles.title}>Steps</Text>
       <Text>List of Steps</Text>
     </ScrollView>
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans-bold',
     fontSize: 22,
     textAlign: 'center',
-  }
+  },
 });
 
 export default MealDetailScreen;
