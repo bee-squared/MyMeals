@@ -42,13 +42,17 @@ const CategoriesScreen = (props) => {
 };
 
 // defined property respected by react navigation (see official docs on website)
-CategoriesScreen.navigationOptions = {
-  headerTitle: 'Meal Categories',
-  headerLeft: (
-    <HeaderButtons HeaderButtonComponent={HeaderButton}>
-      <Item title='Menu' iconName='ios-menu' onPress={()=>{}} />
-    </HeaderButtons>
-  )
+CategoriesScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: 'Meal Categories',
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item title='Menu' iconName='ios-menu' onPress={()=>{
+          navData.navigation.toggleDrawer();
+        }} />
+      </HeaderButtons>
+    )
+  }
 };
 
 const styles = StyleSheet.create({
