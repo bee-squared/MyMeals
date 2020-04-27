@@ -67,6 +67,28 @@ FiltersScreen.navigationOptions = (navData) => {
         />
       </HeaderButtons>
     ),
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title='Menu'
+          iconName='ios-menu'
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+    headerRight: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title='Save'
+          iconName='ios-save'
+          onPress={() => {
+            console.log('Saving Filters!')
+          }}
+        />
+      </HeaderButtons>
+    ),
   };
 };
 
