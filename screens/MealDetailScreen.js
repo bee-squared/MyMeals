@@ -1,23 +1,33 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Image,
+  View,
+  Text,
+  Button,
+} from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
 import { MEALS } from '../data/dummy-data';
 import HeaderButton from '../components/HeaderButton';
+import DefaultText from '../components/DefaultText';
 
 const MealDetailScreen = (props) => {
   const mealId = props.navigation.getParam('mealId');
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   return (
-    <View style={styles.screen}>
-      <Text>{selectedMeal.title}</Text>
-      <Button
-        title='Go Back to Categories'
-        onPress={() => {
-          props.navigation.popToTop();
-        }}
-      />
-    </View>
+    <ScrollView>
+      <Image />
+      <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
+        <DefaultText>{props.duration}m</DefaultText>
+        <DefaultText>{props.complexity}</DefaultText>
+        <DefaultText>{props.affordability}</DefaultText>
+      </View>
+      <Text style={styles.title}>Ingredients</Text>
+      <Text>List of ingredients...</Text>
+      <Text>List of Steps</Text>
+    </ScrollView>
   );
 };
 
