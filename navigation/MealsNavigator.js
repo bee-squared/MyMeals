@@ -98,12 +98,20 @@ const FiltersNavigator = createStackNavigator(
     Filters: FilterScreen,
   },
   {
+    // navigationOptions: {
+    //   drawerLabel: 'Filters!!!',
+    // },
     defaultNavigationOptions: defaultStackNavOptions,
   }
 );
 
 const MainNavigator = createDrawerNavigator({
-  MealsFavs: MealsFavTabNavigator,
+  MealsFavs: {
+    screen: MealsFavTabNavigator,
+    navigationOptions: {
+      drawerLabel: 'Meals',
+    },
+  },
   Filters: FiltersNavigator,
 });
 
