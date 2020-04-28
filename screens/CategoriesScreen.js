@@ -1,10 +1,7 @@
 import React from 'react';
 import {
   StyleSheet,
-  View,
-  Text,
   FlatList,
-  TouchableOpacity,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
@@ -44,7 +41,7 @@ const CategoriesScreen = (props) => {
 CategoriesScreen.navigationOptions = (navData) => {
   return {
     headerTitle: 'Meal Categories',
-    headerLeft: (() => 
+    headerLeft: (() =>
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item title='Menu' iconName='ios-menu' onPress={()=>{
           navData.navigation.toggleDrawer();
