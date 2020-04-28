@@ -4,6 +4,7 @@ import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
 import { enableScreens } from 'react-native-screens';
 import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 
 import MealsNavigator from './navigation/MealsNavigator';
 import mealsReducer from './store/reducers/meals';
@@ -13,7 +14,7 @@ enableScreens();
 // use combineReducers when you have multiple reducers
 const rootReducer = combineReducers({
   meals: mealsReducer,
-})
+});
 
 const store = createStore(rootReducer);
 
@@ -37,5 +38,9 @@ export default function App() {
     );
   }
 
-  return <MealsNavigator />;
+  return (
+    <Provider store={store}>
+      <MealsNavigator />
+    </Provider>
+  );
 }
