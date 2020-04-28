@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet, Image, View, Text } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import HeaderButton from '../components/HeaderButton';
 import DefaultText from '../components/DefaultText';
