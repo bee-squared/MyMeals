@@ -1,17 +1,20 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, View, Text, Switch, Platform } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useDispatch } from 'react-redux';
 
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
-import { set } from 'react-native-reanimated';
+import { setFilters } from '../store/actions/meals';
 
 const FilterSwitch = (props) => {
   return (
     <View style={styles.filterContainer}>
       <Text>{props.label}</Text>
       <Switch
-        trackColor={{true: Platform.OS === 'android' ? Colors.primaryColor : 'lightgrey'}}
+        trackColor={{
+          true: Platform.OS === 'android' ? Colors.primaryColor : 'lightgrey',
+        }}
         thumbColor={Platform.OS === 'android' ? 'white' : Colors.primaryColor}
         value={props.state}
         onValueChange={props.onChange}
@@ -21,13 +24,14 @@ const FilterSwitch = (props) => {
 };
 
 const FiltersScreen = (props) => {
-
   const { navigation } = props;
 
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
+
+  const dispatch = useDispatch();
 
   const saveFilters = useCallback(() => {
     const appliedFilters = {
@@ -37,13 +41,13 @@ const FiltersScreen = (props) => {
       vegetarian: isVegetarian,
     };
 
-    console.log(appliedFilters);
-  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]); // dependencies to rerender
+    dispatch(setFilters(appliedFilters));
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]); // dependencies to rerender
 
-    useEffect(() => {
-      // new params get merged or overwritten with existing
-      props.navigation.setParams({save: saveFilters });
-    }, [saveFilters]) // useEffect is only used to rerender when the function defined as a parameter is called
+  useEffect(() => {
+    // new params get merged or overwritten with existing
+    props.navigation.setParams({ save: saveFilters });
+  }, [saveFilters]); // useEffect is only used to rerender when the function defined as a parameter is called
 
   return (
     <View style={styles.screen}>
@@ -75,7 +79,7 @@ const FiltersScreen = (props) => {
 FiltersScreen.navigationOptions = (navData) => {
   return {
     headerTitle: 'Filter Meals',
-    headerLeft: (() =>
+    headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title='Menu'
@@ -86,7 +90,7 @@ FiltersScreen.navigationOptions = (navData) => {
         />
       </HeaderButtons>
     ),
-    headerRight: (() =>
+    headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title='Save'
