@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(208,208,208)',
     borderRadius: 10,
     overflow: 'hidden',
-    marginBottom: 20,
+    marginTop: 20,
   },
   bgImage: {
     width: '100%',
