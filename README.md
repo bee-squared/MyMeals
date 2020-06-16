@@ -2,6 +2,8 @@
 
 'MyMeals' is a React Native App that allows users to find meals and favoritize them so they can easily access recipes and prepare their most important meals.
 
+![Intro Image](./README_Images/MyMeals.gif "MyMeals.gif")
+
 ## Getting Started
 
 #### Setup
